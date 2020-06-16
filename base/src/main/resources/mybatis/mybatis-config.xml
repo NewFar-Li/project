@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <settings>
+        <!--指明实体类的属性与数据库表的字段进行匹配（解决属性名与字段名不一致的问题）-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <!--为com.xr.entity包下所有的类设置别名，别名是类名，如:User 或 user-->
+        <package name="com.xr.entity"></package>
+        <!--为某一个实体类设置别名-->
+        <!--typeAlias type="com.xr.entity.User" alias="user"></typeAlias-->
+    </typeAliases>
+</configuration>

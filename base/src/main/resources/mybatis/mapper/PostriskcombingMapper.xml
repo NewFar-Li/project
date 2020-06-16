@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xr.mapper.PostriskcombingMapper">
+  <resultMap id="BaseResultMap" type="com.xr.entity.Postriskcombing">
+    <id column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="pRiskId" jdbcType="INTEGER" property="priskid" />
+    <result column="pYear" jdbcType="TIMESTAMP" property="pyear" />
+    <result column="pDeptId" jdbcType="INTEGER" property="pdeptid" />
+    <result column="pInfomationId" jdbcType="INTEGER" property="pinfomationid" />
+    <result column="pProject" jdbcType="VARCHAR" property="pproject" />
+    <result column="pRiskPointDescription" jdbcType="VARCHAR" property="priskpointdescription" />
+    <result column="pProbableLValue" jdbcType="VARCHAR" property="pprobablelvalue" />
+    <result column="pCValue" jdbcType="VARCHAR" property="pcvalue" />
+    <result column="pDValue" jdbcType="VARCHAR" property="pdvalue" />
+    <result column="pGrade" jdbcType="VARCHAR" property="pgrade" />
+    <result column="pMeasures" jdbcType="VARCHAR" property="pmeasures" />
+    <result column="pCreateTime" jdbcType="TIMESTAMP" property="pcreatetime" />
+    <result column="pCreateId" jdbcType="INTEGER" property="pcreateid" />
+    <result column="pCreateName" jdbcType="VARCHAR" property="pcreatename" />
+    <result column="pStatus" jdbcType="INTEGER" property="pstatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pid, pRiskId, pYear, pDeptId, pInfomationId, pProject, pRiskPointDescription, pProbableLValue, 
+    pCValue, pDValue, pGrade, pMeasures, pCreateTime, pCreateId, pCreateName, pStatus
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from postriskcombing
+    where pid = #{pid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from postriskcombing
+    where pid = #{pid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xr.entity.Postriskcombing">
+    insert into postriskcombing (pid, pRiskId, pYear, 
+      pDeptId, pInfomationId, pProject, 
+      pRiskPointDescription, pProbableLValue, 
+      pCValue, pDValue, pGrade, 
+      pMeasures, pCreateTime, pCreateId, 
+      pCreateName, pStatus)
+    values (#{pid,jdbcType=INTEGER}, #{priskid,jdbcType=INTEGER}, #{pyear,jdbcType=TIMESTAMP}, 
+      #{pdeptid,jdbcType=INTEGER}, #{pinfomationid,jdbcType=INTEGER}, #{pproject,jdbcType=VARCHAR}, 
+      #{priskpointdescription,jdbcType=VARCHAR}, #{pprobablelvalue,jdbcType=VARCHAR}, 
+      #{pcvalue,jdbcType=VARCHAR}, #{pdvalue,jdbcType=VARCHAR}, #{pgrade,jdbcType=VARCHAR}, 
+      #{pmeasures,jdbcType=VARCHAR}, #{pcreatetime,jdbcType=TIMESTAMP}, #{pcreateid,jdbcType=INTEGER}, 
+      #{pcreatename,jdbcType=VARCHAR}, #{pstatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xr.entity.Postriskcombing">
+    insert into postriskcombing
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="priskid != null">
+        pRiskId,
+      </if>
+      <if test="pyear != null">
+        pYear,
+      </if>
+      <if test="pdeptid != null">
+        pDeptId,
+      </if>
+      <if test="pinfomationid != null">
+        pInfomationId,
+      </if>
+      <if test="pproject != null">
+        pProject,
+      </if>
+      <if test="priskpointdescription != null">
+        pRiskPointDescription,
+      </if>
+      <if test="pprobablelvalue != null">
+        pProbableLValue,
+      </if>
+      <if test="pcvalue != null">
+        pCValue,
+      </if>
+      <if test="pdvalue != null">
+        pDValue,
+      </if>
+      <if test="pgrade != null">
+        pGrade,
+      </if>
+      <if test="pmeasures != null">
+        pMeasures,
+      </if>
+      <if test="pcreatetime != null">
+        pCreateTime,
+      </if>
+      <if test="pcreateid != null">
+        pCreateId,
+      </if>
+      <if test="pcreatename != null">
+        pCreateName,
+      </if>
+      <if test="pstatus != null">
+        pStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="priskid != null">
+        #{priskid,jdbcType=INTEGER},
+      </if>
+      <if test="pyear != null">
+        #{pyear,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pdeptid != null">
+        #{pdeptid,jdbcType=INTEGER},
+      </if>
+      <if test="pinfomationid != null">
+        #{pinfomationid,jdbcType=INTEGER},
+      </if>
+      <if test="pproject != null">
+        #{pproject,jdbcType=VARCHAR},
+      </if>
+      <if test="priskpointdescription != null">
+        #{priskpointdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="pprobablelvalue != null">
+        #{pprobablelvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="pcvalue != null">
+        #{pcvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="pdvalue != null">
+        #{pdvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="pgrade != null">
+        #{pgrade,jdbcType=VARCHAR},
+      </if>
+      <if test="pmeasures != null">
+        #{pmeasures,jdbcType=VARCHAR},
+      </if>
+      <if test="pcreatetime != null">
+        #{pcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pcreateid != null">
+        #{pcreateid,jdbcType=INTEGER},
+      </if>
+      <if test="pcreatename != null">
+        #{pcreatename,jdbcType=VARCHAR},
+      </if>
+      <if test="pstatus != null">
+        #{pstatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xr.entity.Postriskcombing">
+    update postriskcombing
+    <set>
+      <if test="priskid != null">
+        pRiskId = #{priskid,jdbcType=INTEGER},
+      </if>
+      <if test="pyear != null">
+        pYear = #{pyear,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pdeptid != null">
+        pDeptId = #{pdeptid,jdbcType=INTEGER},
+      </if>
+      <if test="pinfomationid != null">
+        pInfomationId = #{pinfomationid,jdbcType=INTEGER},
+      </if>
+      <if test="pproject != null">
+        pProject = #{pproject,jdbcType=VARCHAR},
+      </if>
+      <if test="priskpointdescription != null">
+        pRiskPointDescription = #{priskpointdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="pprobablelvalue != null">
+        pProbableLValue = #{pprobablelvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="pcvalue != null">
+        pCValue = #{pcvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="pdvalue != null">
+        pDValue = #{pdvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="pgrade != null">
+        pGrade = #{pgrade,jdbcType=VARCHAR},
+      </if>
+      <if test="pmeasures != null">
+        pMeasures = #{pmeasures,jdbcType=VARCHAR},
+      </if>
+      <if test="pcreatetime != null">
+        pCreateTime = #{pcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pcreateid != null">
+        pCreateId = #{pcreateid,jdbcType=INTEGER},
+      </if>
+      <if test="pcreatename != null">
+        pCreateName = #{pcreatename,jdbcType=VARCHAR},
+      </if>
+      <if test="pstatus != null">
+        pStatus = #{pstatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where pid = #{pid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xr.entity.Postriskcombing">
+    update postriskcombing
+    set pRiskId = #{priskid,jdbcType=INTEGER},
+      pYear = #{pyear,jdbcType=TIMESTAMP},
+      pDeptId = #{pdeptid,jdbcType=INTEGER},
+      pInfomationId = #{pinfomationid,jdbcType=INTEGER},
+      pProject = #{pproject,jdbcType=VARCHAR},
+      pRiskPointDescription = #{priskpointdescription,jdbcType=VARCHAR},
+      pProbableLValue = #{pprobablelvalue,jdbcType=VARCHAR},
+      pCValue = #{pcvalue,jdbcType=VARCHAR},
+      pDValue = #{pdvalue,jdbcType=VARCHAR},
+      pGrade = #{pgrade,jdbcType=VARCHAR},
+      pMeasures = #{pmeasures,jdbcType=VARCHAR},
+      pCreateTime = #{pcreatetime,jdbcType=TIMESTAMP},
+      pCreateId = #{pcreateid,jdbcType=INTEGER},
+      pCreateName = #{pcreatename,jdbcType=VARCHAR},
+      pStatus = #{pstatus,jdbcType=INTEGER}
+    where pid = #{pid,jdbcType=INTEGER}
+  </update>
+</mapper>

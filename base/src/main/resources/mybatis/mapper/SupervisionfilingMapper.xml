@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xr.mapper.SupervisionfilingMapper">
+  <resultMap id="BaseResultMap" type="com.xr.entity.Supervisionfiling">
+    <id column="sid" jdbcType="INTEGER" property="sid" />
+    <result column="sFilingId" jdbcType="INTEGER" property="sfilingid" />
+    <result column="sPaperItems" jdbcType="VARCHAR" property="spaperitems" />
+    <result column="sAccessory" jdbcType="VARCHAR" property="saccessory" />
+    <result column="sEnforcementMode" jdbcType="VARCHAR" property="senforcementmode" />
+    <result column="sCost" jdbcType="VARCHAR" property="scost" />
+    <result column="sUndertaker" jdbcType="VARCHAR" property="sundertaker" />
+    <result column="sUndertakerDeptId" jdbcType="INTEGER" property="sundertakerdeptid" />
+    <result column="sAuditOpinion" jdbcType="VARCHAR" property="sauditopinion" />
+    <result column="sCreateTime" jdbcType="TIMESTAMP" property="screatetime" />
+    <result column="sCreateId" jdbcType="INTEGER" property="screateid" />
+    <result column="sCreateName" jdbcType="VARCHAR" property="screatename" />
+    <result column="sStatus" jdbcType="INTEGER" property="sstatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sid, sFilingId, sPaperItems, sAccessory, sEnforcementMode, sCost, sUndertaker, sUndertakerDeptId, 
+    sAuditOpinion, sCreateTime, sCreateId, sCreateName, sStatus
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from supervisionfiling
+    where sid = #{sid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from supervisionfiling
+    where sid = #{sid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xr.entity.Supervisionfiling">
+    insert into supervisionfiling (sid, sFilingId, sPaperItems, 
+      sAccessory, sEnforcementMode, sCost, 
+      sUndertaker, sUndertakerDeptId, sAuditOpinion, 
+      sCreateTime, sCreateId, sCreateName, 
+      sStatus)
+    values (#{sid,jdbcType=INTEGER}, #{sfilingid,jdbcType=INTEGER}, #{spaperitems,jdbcType=VARCHAR}, 
+      #{saccessory,jdbcType=VARCHAR}, #{senforcementmode,jdbcType=VARCHAR}, #{scost,jdbcType=VARCHAR}, 
+      #{sundertaker,jdbcType=VARCHAR}, #{sundertakerdeptid,jdbcType=INTEGER}, #{sauditopinion,jdbcType=VARCHAR}, 
+      #{screatetime,jdbcType=TIMESTAMP}, #{screateid,jdbcType=INTEGER}, #{screatename,jdbcType=VARCHAR}, 
+      #{sstatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xr.entity.Supervisionfiling">
+    insert into supervisionfiling
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sid != null">
+        sid,
+      </if>
+      <if test="sfilingid != null">
+        sFilingId,
+      </if>
+      <if test="spaperitems != null">
+        sPaperItems,
+      </if>
+      <if test="saccessory != null">
+        sAccessory,
+      </if>
+      <if test="senforcementmode != null">
+        sEnforcementMode,
+      </if>
+      <if test="scost != null">
+        sCost,
+      </if>
+      <if test="sundertaker != null">
+        sUndertaker,
+      </if>
+      <if test="sundertakerdeptid != null">
+        sUndertakerDeptId,
+      </if>
+      <if test="sauditopinion != null">
+        sAuditOpinion,
+      </if>
+      <if test="screatetime != null">
+        sCreateTime,
+      </if>
+      <if test="screateid != null">
+        sCreateId,
+      </if>
+      <if test="screatename != null">
+        sCreateName,
+      </if>
+      <if test="sstatus != null">
+        sStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sid != null">
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="sfilingid != null">
+        #{sfilingid,jdbcType=INTEGER},
+      </if>
+      <if test="spaperitems != null">
+        #{spaperitems,jdbcType=VARCHAR},
+      </if>
+      <if test="saccessory != null">
+        #{saccessory,jdbcType=VARCHAR},
+      </if>
+      <if test="senforcementmode != null">
+        #{senforcementmode,jdbcType=VARCHAR},
+      </if>
+      <if test="scost != null">
+        #{scost,jdbcType=VARCHAR},
+      </if>
+      <if test="sundertaker != null">
+        #{sundertaker,jdbcType=VARCHAR},
+      </if>
+      <if test="sundertakerdeptid != null">
+        #{sundertakerdeptid,jdbcType=INTEGER},
+      </if>
+      <if test="sauditopinion != null">
+        #{sauditopinion,jdbcType=VARCHAR},
+      </if>
+      <if test="screatetime != null">
+        #{screatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="screateid != null">
+        #{screateid,jdbcType=INTEGER},
+      </if>
+      <if test="screatename != null">
+        #{screatename,jdbcType=VARCHAR},
+      </if>
+      <if test="sstatus != null">
+        #{sstatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xr.entity.Supervisionfiling">
+    update supervisionfiling
+    <set>
+      <if test="sfilingid != null">
+        sFilingId = #{sfilingid,jdbcType=INTEGER},
+      </if>
+      <if test="spaperitems != null">
+        sPaperItems = #{spaperitems,jdbcType=VARCHAR},
+      </if>
+      <if test="saccessory != null">
+        sAccessory = #{saccessory,jdbcType=VARCHAR},
+      </if>
+      <if test="senforcementmode != null">
+        sEnforcementMode = #{senforcementmode,jdbcType=VARCHAR},
+      </if>
+      <if test="scost != null">
+        sCost = #{scost,jdbcType=VARCHAR},
+      </if>
+      <if test="sundertaker != null">
+        sUndertaker = #{sundertaker,jdbcType=VARCHAR},
+      </if>
+      <if test="sundertakerdeptid != null">
+        sUndertakerDeptId = #{sundertakerdeptid,jdbcType=INTEGER},
+      </if>
+      <if test="sauditopinion != null">
+        sAuditOpinion = #{sauditopinion,jdbcType=VARCHAR},
+      </if>
+      <if test="screatetime != null">
+        sCreateTime = #{screatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="screateid != null">
+        sCreateId = #{screateid,jdbcType=INTEGER},
+      </if>
+      <if test="screatename != null">
+        sCreateName = #{screatename,jdbcType=VARCHAR},
+      </if>
+      <if test="sstatus != null">
+        sStatus = #{sstatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sid = #{sid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xr.entity.Supervisionfiling">
+    update supervisionfiling
+    set sFilingId = #{sfilingid,jdbcType=INTEGER},
+      sPaperItems = #{spaperitems,jdbcType=VARCHAR},
+      sAccessory = #{saccessory,jdbcType=VARCHAR},
+      sEnforcementMode = #{senforcementmode,jdbcType=VARCHAR},
+      sCost = #{scost,jdbcType=VARCHAR},
+      sUndertaker = #{sundertaker,jdbcType=VARCHAR},
+      sUndertakerDeptId = #{sundertakerdeptid,jdbcType=INTEGER},
+      sAuditOpinion = #{sauditopinion,jdbcType=VARCHAR},
+      sCreateTime = #{screatetime,jdbcType=TIMESTAMP},
+      sCreateId = #{screateid,jdbcType=INTEGER},
+      sCreateName = #{screatename,jdbcType=VARCHAR},
+      sStatus = #{sstatus,jdbcType=INTEGER}
+    where sid = #{sid,jdbcType=INTEGER}
+  </update>
+</mapper>

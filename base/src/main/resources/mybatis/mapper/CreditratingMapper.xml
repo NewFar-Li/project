@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xr.mapper.CreditratingMapper">
+  <resultMap id="BaseResultMap" type="com.xr.entity.Creditrating">
+    <id column="cid" jdbcType="INTEGER" property="cid" />
+    <result column="reserved1" jdbcType="VARCHAR" property="reserved1" />
+    <result column="reserved2" jdbcType="VARCHAR" property="reserved2" />
+    <result column="cCreateTime" jdbcType="TIMESTAMP" property="ccreatetime" />
+    <result column="cCreateId" jdbcType="INTEGER" property="ccreateid" />
+    <result column="cCreateName" jdbcType="VARCHAR" property="ccreatename" />
+    <result column="cStatus" jdbcType="INTEGER" property="cstatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cid, reserved1, reserved2, cCreateTime, cCreateId, cCreateName, cStatus
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from creditrating
+    where cid = #{cid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from creditrating
+    where cid = #{cid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xr.entity.Creditrating">
+    insert into creditrating (cid, reserved1, reserved2, 
+      cCreateTime, cCreateId, cCreateName, 
+      cStatus)
+    values (#{cid,jdbcType=INTEGER}, #{reserved1,jdbcType=VARCHAR}, #{reserved2,jdbcType=VARCHAR}, 
+      #{ccreatetime,jdbcType=TIMESTAMP}, #{ccreateid,jdbcType=INTEGER}, #{ccreatename,jdbcType=VARCHAR}, 
+      #{cstatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xr.entity.Creditrating">
+    insert into creditrating
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        cid,
+      </if>
+      <if test="reserved1 != null">
+        reserved1,
+      </if>
+      <if test="reserved2 != null">
+        reserved2,
+      </if>
+      <if test="ccreatetime != null">
+        cCreateTime,
+      </if>
+      <if test="ccreateid != null">
+        cCreateId,
+      </if>
+      <if test="ccreatename != null">
+        cCreateName,
+      </if>
+      <if test="cstatus != null">
+        cStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="reserved1 != null">
+        #{reserved1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserved2 != null">
+        #{reserved2,jdbcType=VARCHAR},
+      </if>
+      <if test="ccreatetime != null">
+        #{ccreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ccreateid != null">
+        #{ccreateid,jdbcType=INTEGER},
+      </if>
+      <if test="ccreatename != null">
+        #{ccreatename,jdbcType=VARCHAR},
+      </if>
+      <if test="cstatus != null">
+        #{cstatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xr.entity.Creditrating">
+    update creditrating
+    <set>
+      <if test="reserved1 != null">
+        reserved1 = #{reserved1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserved2 != null">
+        reserved2 = #{reserved2,jdbcType=VARCHAR},
+      </if>
+      <if test="ccreatetime != null">
+        cCreateTime = #{ccreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ccreateid != null">
+        cCreateId = #{ccreateid,jdbcType=INTEGER},
+      </if>
+      <if test="ccreatename != null">
+        cCreateName = #{ccreatename,jdbcType=VARCHAR},
+      </if>
+      <if test="cstatus != null">
+        cStatus = #{cstatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xr.entity.Creditrating">
+    update creditrating
+    set reserved1 = #{reserved1,jdbcType=VARCHAR},
+      reserved2 = #{reserved2,jdbcType=VARCHAR},
+      cCreateTime = #{ccreatetime,jdbcType=TIMESTAMP},
+      cCreateId = #{ccreateid,jdbcType=INTEGER},
+      cCreateName = #{ccreatename,jdbcType=VARCHAR},
+      cStatus = #{cstatus,jdbcType=INTEGER}
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+</mapper>

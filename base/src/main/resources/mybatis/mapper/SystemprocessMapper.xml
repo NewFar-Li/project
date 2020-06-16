@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xr.mapper.SystemprocessMapper">
+  <resultMap id="BaseResultMap" type="com.xr.entity.Systemprocess">
+    <id column="sysid" jdbcType="INTEGER" property="sysid" />
+    <result column="sysTitle" jdbcType="VARCHAR" property="systitle" />
+    <result column="sysContent" jdbcType="VARCHAR" property="syscontent" />
+    <result column="sysCreateTime" jdbcType="TIMESTAMP" property="syscreatetime" />
+    <result column="sysLoginId" jdbcType="INTEGER" property="sysloginid" />
+    <result column="sysCreateName" jdbcType="VARCHAR" property="syscreatename" />
+    <result column="sysStatus" jdbcType="INTEGER" property="sysstatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sysid, sysTitle, sysContent, sysCreateTime, sysLoginId, sysCreateName, sysStatus
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from systemprocess
+    where sysid = #{sysid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from systemprocess
+    where sysid = #{sysid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xr.entity.Systemprocess">
+    insert into systemprocess (sysid, sysTitle, sysContent, 
+      sysCreateTime, sysLoginId, sysCreateName, 
+      sysStatus)
+    values (#{sysid,jdbcType=INTEGER}, #{systitle,jdbcType=VARCHAR}, #{syscontent,jdbcType=VARCHAR}, 
+      #{syscreatetime,jdbcType=TIMESTAMP}, #{sysloginid,jdbcType=INTEGER}, #{syscreatename,jdbcType=VARCHAR}, 
+      #{sysstatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xr.entity.Systemprocess">
+    insert into systemprocess
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sysid != null">
+        sysid,
+      </if>
+      <if test="systitle != null">
+        sysTitle,
+      </if>
+      <if test="syscontent != null">
+        sysContent,
+      </if>
+      <if test="syscreatetime != null">
+        sysCreateTime,
+      </if>
+      <if test="sysloginid != null">
+        sysLoginId,
+      </if>
+      <if test="syscreatename != null">
+        sysCreateName,
+      </if>
+      <if test="sysstatus != null">
+        sysStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sysid != null">
+        #{sysid,jdbcType=INTEGER},
+      </if>
+      <if test="systitle != null">
+        #{systitle,jdbcType=VARCHAR},
+      </if>
+      <if test="syscontent != null">
+        #{syscontent,jdbcType=VARCHAR},
+      </if>
+      <if test="syscreatetime != null">
+        #{syscreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysloginid != null">
+        #{sysloginid,jdbcType=INTEGER},
+      </if>
+      <if test="syscreatename != null">
+        #{syscreatename,jdbcType=VARCHAR},
+      </if>
+      <if test="sysstatus != null">
+        #{sysstatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xr.entity.Systemprocess">
+    update systemprocess
+    <set>
+      <if test="systitle != null">
+        sysTitle = #{systitle,jdbcType=VARCHAR},
+      </if>
+      <if test="syscontent != null">
+        sysContent = #{syscontent,jdbcType=VARCHAR},
+      </if>
+      <if test="syscreatetime != null">
+        sysCreateTime = #{syscreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysloginid != null">
+        sysLoginId = #{sysloginid,jdbcType=INTEGER},
+      </if>
+      <if test="syscreatename != null">
+        sysCreateName = #{syscreatename,jdbcType=VARCHAR},
+      </if>
+      <if test="sysstatus != null">
+        sysStatus = #{sysstatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sysid = #{sysid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xr.entity.Systemprocess">
+    update systemprocess
+    set sysTitle = #{systitle,jdbcType=VARCHAR},
+      sysContent = #{syscontent,jdbcType=VARCHAR},
+      sysCreateTime = #{syscreatetime,jdbcType=TIMESTAMP},
+      sysLoginId = #{sysloginid,jdbcType=INTEGER},
+      sysCreateName = #{syscreatename,jdbcType=VARCHAR},
+      sysStatus = #{sysstatus,jdbcType=INTEGER}
+    where sysid = #{sysid,jdbcType=INTEGER}
+  </update>
+</mapper>

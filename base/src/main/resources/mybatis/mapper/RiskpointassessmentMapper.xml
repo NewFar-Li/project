@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xr.mapper.RiskpointassessmentMapper">
+  <resultMap id="BaseResultMap" type="com.xr.entity.Riskpointassessment">
+    <id column="riskid" jdbcType="INTEGER" property="riskid" />
+    <result column="riskImfomation" jdbcType="VARCHAR" property="riskimfomation" />
+    <result column="numberOneRisks" jdbcType="VARCHAR" property="numberonerisks" />
+    <result column="numberTwoRisks" jdbcType="VARCHAR" property="numbertworisks" />
+    <result column="numberThreeRisks" jdbcType="VARCHAR" property="numberthreerisks" />
+    <result column="riskCreateTime" jdbcType="TIMESTAMP" property="riskcreatetime" />
+    <result column="riskCreateId" jdbcType="INTEGER" property="riskcreateid" />
+    <result column="riskCreateName" jdbcType="VARCHAR" property="riskcreatename" />
+    <result column="riskStatus" jdbcType="INTEGER" property="riskstatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    riskid, riskImfomation, numberOneRisks, numberTwoRisks, numberThreeRisks, riskCreateTime, 
+    riskCreateId, riskCreateName, riskStatus
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from riskpointassessment
+    where riskid = #{riskid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from riskpointassessment
+    where riskid = #{riskid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xr.entity.Riskpointassessment">
+    insert into riskpointassessment (riskid, riskImfomation, numberOneRisks, 
+      numberTwoRisks, numberThreeRisks, riskCreateTime, 
+      riskCreateId, riskCreateName, riskStatus
+      )
+    values (#{riskid,jdbcType=INTEGER}, #{riskimfomation,jdbcType=VARCHAR}, #{numberonerisks,jdbcType=VARCHAR}, 
+      #{numbertworisks,jdbcType=VARCHAR}, #{numberthreerisks,jdbcType=VARCHAR}, #{riskcreatetime,jdbcType=TIMESTAMP}, 
+      #{riskcreateid,jdbcType=INTEGER}, #{riskcreatename,jdbcType=VARCHAR}, #{riskstatus,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xr.entity.Riskpointassessment">
+    insert into riskpointassessment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="riskid != null">
+        riskid,
+      </if>
+      <if test="riskimfomation != null">
+        riskImfomation,
+      </if>
+      <if test="numberonerisks != null">
+        numberOneRisks,
+      </if>
+      <if test="numbertworisks != null">
+        numberTwoRisks,
+      </if>
+      <if test="numberthreerisks != null">
+        numberThreeRisks,
+      </if>
+      <if test="riskcreatetime != null">
+        riskCreateTime,
+      </if>
+      <if test="riskcreateid != null">
+        riskCreateId,
+      </if>
+      <if test="riskcreatename != null">
+        riskCreateName,
+      </if>
+      <if test="riskstatus != null">
+        riskStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="riskid != null">
+        #{riskid,jdbcType=INTEGER},
+      </if>
+      <if test="riskimfomation != null">
+        #{riskimfomation,jdbcType=VARCHAR},
+      </if>
+      <if test="numberonerisks != null">
+        #{numberonerisks,jdbcType=VARCHAR},
+      </if>
+      <if test="numbertworisks != null">
+        #{numbertworisks,jdbcType=VARCHAR},
+      </if>
+      <if test="numberthreerisks != null">
+        #{numberthreerisks,jdbcType=VARCHAR},
+      </if>
+      <if test="riskcreatetime != null">
+        #{riskcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="riskcreateid != null">
+        #{riskcreateid,jdbcType=INTEGER},
+      </if>
+      <if test="riskcreatename != null">
+        #{riskcreatename,jdbcType=VARCHAR},
+      </if>
+      <if test="riskstatus != null">
+        #{riskstatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xr.entity.Riskpointassessment">
+    update riskpointassessment
+    <set>
+      <if test="riskimfomation != null">
+        riskImfomation = #{riskimfomation,jdbcType=VARCHAR},
+      </if>
+      <if test="numberonerisks != null">
+        numberOneRisks = #{numberonerisks,jdbcType=VARCHAR},
+      </if>
+      <if test="numbertworisks != null">
+        numberTwoRisks = #{numbertworisks,jdbcType=VARCHAR},
+      </if>
+      <if test="numberthreerisks != null">
+        numberThreeRisks = #{numberthreerisks,jdbcType=VARCHAR},
+      </if>
+      <if test="riskcreatetime != null">
+        riskCreateTime = #{riskcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="riskcreateid != null">
+        riskCreateId = #{riskcreateid,jdbcType=INTEGER},
+      </if>
+      <if test="riskcreatename != null">
+        riskCreateName = #{riskcreatename,jdbcType=VARCHAR},
+      </if>
+      <if test="riskstatus != null">
+        riskStatus = #{riskstatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where riskid = #{riskid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xr.entity.Riskpointassessment">
+    update riskpointassessment
+    set riskImfomation = #{riskimfomation,jdbcType=VARCHAR},
+      numberOneRisks = #{numberonerisks,jdbcType=VARCHAR},
+      numberTwoRisks = #{numbertworisks,jdbcType=VARCHAR},
+      numberThreeRisks = #{numberthreerisks,jdbcType=VARCHAR},
+      riskCreateTime = #{riskcreatetime,jdbcType=TIMESTAMP},
+      riskCreateId = #{riskcreateid,jdbcType=INTEGER},
+      riskCreateName = #{riskcreatename,jdbcType=VARCHAR},
+      riskStatus = #{riskstatus,jdbcType=INTEGER}
+    where riskid = #{riskid,jdbcType=INTEGER}
+  </update>
+</mapper>

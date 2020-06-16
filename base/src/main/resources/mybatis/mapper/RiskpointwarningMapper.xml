@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xr.mapper.RiskpointwarningMapper">
+  <resultMap id="BaseResultMap" type="com.xr.entity.Riskpointwarning">
+    <id column="wid" jdbcType="INTEGER" property="wid" />
+    <result column="warningId" jdbcType="INTEGER" property="warningid" />
+    <result column="wTitle" jdbcType="VARCHAR" property="wtitle" />
+    <result column="wContent" jdbcType="VARCHAR" property="wcontent" />
+    <result column="wCreateTime" jdbcType="TIMESTAMP" property="wcreatetime" />
+    <result column="wLoginId" jdbcType="INTEGER" property="wloginid" />
+    <result column="wCreateName" jdbcType="VARCHAR" property="wcreatename" />
+    <result column="wStatus" jdbcType="INTEGER" property="wstatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    wid, warningId, wTitle, wContent, wCreateTime, wLoginId, wCreateName, wStatus
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from riskpointwarning
+    where wid = #{wid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from riskpointwarning
+    where wid = #{wid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xr.entity.Riskpointwarning">
+    insert into riskpointwarning (wid, warningId, wTitle, 
+      wContent, wCreateTime, wLoginId, 
+      wCreateName, wStatus)
+    values (#{wid,jdbcType=INTEGER}, #{warningid,jdbcType=INTEGER}, #{wtitle,jdbcType=VARCHAR}, 
+      #{wcontent,jdbcType=VARCHAR}, #{wcreatetime,jdbcType=TIMESTAMP}, #{wloginid,jdbcType=INTEGER}, 
+      #{wcreatename,jdbcType=VARCHAR}, #{wstatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xr.entity.Riskpointwarning">
+    insert into riskpointwarning
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wid != null">
+        wid,
+      </if>
+      <if test="warningid != null">
+        warningId,
+      </if>
+      <if test="wtitle != null">
+        wTitle,
+      </if>
+      <if test="wcontent != null">
+        wContent,
+      </if>
+      <if test="wcreatetime != null">
+        wCreateTime,
+      </if>
+      <if test="wloginid != null">
+        wLoginId,
+      </if>
+      <if test="wcreatename != null">
+        wCreateName,
+      </if>
+      <if test="wstatus != null">
+        wStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wid != null">
+        #{wid,jdbcType=INTEGER},
+      </if>
+      <if test="warningid != null">
+        #{warningid,jdbcType=INTEGER},
+      </if>
+      <if test="wtitle != null">
+        #{wtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="wcontent != null">
+        #{wcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="wcreatetime != null">
+        #{wcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wloginid != null">
+        #{wloginid,jdbcType=INTEGER},
+      </if>
+      <if test="wcreatename != null">
+        #{wcreatename,jdbcType=VARCHAR},
+      </if>
+      <if test="wstatus != null">
+        #{wstatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xr.entity.Riskpointwarning">
+    update riskpointwarning
+    <set>
+      <if test="warningid != null">
+        warningId = #{warningid,jdbcType=INTEGER},
+      </if>
+      <if test="wtitle != null">
+        wTitle = #{wtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="wcontent != null">
+        wContent = #{wcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="wcreatetime != null">
+        wCreateTime = #{wcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wloginid != null">
+        wLoginId = #{wloginid,jdbcType=INTEGER},
+      </if>
+      <if test="wcreatename != null">
+        wCreateName = #{wcreatename,jdbcType=VARCHAR},
+      </if>
+      <if test="wstatus != null">
+        wStatus = #{wstatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where wid = #{wid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xr.entity.Riskpointwarning">
+    update riskpointwarning
+    set warningId = #{warningid,jdbcType=INTEGER},
+      wTitle = #{wtitle,jdbcType=VARCHAR},
+      wContent = #{wcontent,jdbcType=VARCHAR},
+      wCreateTime = #{wcreatetime,jdbcType=TIMESTAMP},
+      wLoginId = #{wloginid,jdbcType=INTEGER},
+      wCreateName = #{wcreatename,jdbcType=VARCHAR},
+      wStatus = #{wstatus,jdbcType=INTEGER}
+    where wid = #{wid,jdbcType=INTEGER}
+  </update>
+</mapper>

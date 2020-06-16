@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xr.mapper.LetterreportMapper">
+  <resultMap id="BaseResultMap" type="com.xr.entity.Letterreport">
+    <id column="lid" jdbcType="INTEGER" property="lid" />
+    <result column="letterId" jdbcType="INTEGER" property="letterid" />
+    <result column="lTime" jdbcType="TIMESTAMP" property="ltime" />
+    <result column="lComplainantName" jdbcType="VARCHAR" property="lcomplainantname" />
+    <result column="lDeptId" jdbcType="INTEGER" property="ldeptid" />
+    <result column="lPostId" jdbcType="INTEGER" property="lpostid" />
+    <result column="lPersonBeReported" jdbcType="VARCHAR" property="lpersonbereported" />
+    <result column="lPbrDeptId" jdbcType="INTEGER" property="lpbrdeptid" />
+    <result column="lPbrPostId" jdbcType="INTEGER" property="lpbrpostid" />
+    <result column="lContent" jdbcType="VARCHAR" property="lcontent" />
+    <result column="lSynopsis" jdbcType="VARCHAR" property="lsynopsis" />
+    <result column="lSupervisionComments" jdbcType="VARCHAR" property="lsupervisioncomments" />
+    <result column="lSupervisionCommentsTime" jdbcType="VARCHAR" property="lsupervisioncommentstime" />
+    <result column="lDisciplinaryComments" jdbcType="VARCHAR" property="ldisciplinarycomments" />
+    <result column="lDisciplinaryTime" jdbcType="TIMESTAMP" property="ldisciplinarytime" />
+    <result column="lLeadersComments" jdbcType="VARCHAR" property="lleaderscomments" />
+    <result column="lLeadersTime" jdbcType="TIMESTAMP" property="lleaderstime" />
+    <result column="lResult" jdbcType="VARCHAR" property="lresult" />
+    <result column="lResultTime" jdbcType="TIMESTAMP" property="lresulttime" />
+    <result column="lSupervisionResutl" jdbcType="VARCHAR" property="lsupervisionresutl" />
+    <result column="lSupervisionResultTime" jdbcType="TIMESTAMP" property="lsupervisionresulttime" />
+    <result column="lCreateTime" jdbcType="TIMESTAMP" property="lcreatetime" />
+    <result column="lCreateId" jdbcType="INTEGER" property="lcreateid" />
+    <result column="lCreateName" jdbcType="VARCHAR" property="lcreatename" />
+    <result column="lStatus" jdbcType="INTEGER" property="lstatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    lid, letterId, lTime, lComplainantName, lDeptId, lPostId, lPersonBeReported, lPbrDeptId, 
+    lPbrPostId, lContent, lSynopsis, lSupervisionComments, lSupervisionCommentsTime, 
+    lDisciplinaryComments, lDisciplinaryTime, lLeadersComments, lLeadersTime, lResult, 
+    lResultTime, lSupervisionResutl, lSupervisionResultTime, lCreateTime, lCreateId, 
+    lCreateName, lStatus
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from letterreport
+    where lid = #{lid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from letterreport
+    where lid = #{lid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xr.entity.Letterreport">
+    insert into letterreport (lid, letterId, lTime, 
+      lComplainantName, lDeptId, lPostId, 
+      lPersonBeReported, lPbrDeptId, lPbrPostId, 
+      lContent, lSynopsis, lSupervisionComments, 
+      lSupervisionCommentsTime, lDisciplinaryComments, 
+      lDisciplinaryTime, lLeadersComments, 
+      lLeadersTime, lResult, lResultTime, 
+      lSupervisionResutl, lSupervisionResultTime, 
+      lCreateTime, lCreateId, lCreateName, 
+      lStatus)
+    values (#{lid,jdbcType=INTEGER}, #{letterid,jdbcType=INTEGER}, #{ltime,jdbcType=TIMESTAMP}, 
+      #{lcomplainantname,jdbcType=VARCHAR}, #{ldeptid,jdbcType=INTEGER}, #{lpostid,jdbcType=INTEGER}, 
+      #{lpersonbereported,jdbcType=VARCHAR}, #{lpbrdeptid,jdbcType=INTEGER}, #{lpbrpostid,jdbcType=INTEGER}, 
+      #{lcontent,jdbcType=VARCHAR}, #{lsynopsis,jdbcType=VARCHAR}, #{lsupervisioncomments,jdbcType=VARCHAR}, 
+      #{lsupervisioncommentstime,jdbcType=VARCHAR}, #{ldisciplinarycomments,jdbcType=VARCHAR}, 
+      #{ldisciplinarytime,jdbcType=TIMESTAMP}, #{lleaderscomments,jdbcType=VARCHAR}, 
+      #{lleaderstime,jdbcType=TIMESTAMP}, #{lresult,jdbcType=VARCHAR}, #{lresulttime,jdbcType=TIMESTAMP}, 
+      #{lsupervisionresutl,jdbcType=VARCHAR}, #{lsupervisionresulttime,jdbcType=TIMESTAMP}, 
+      #{lcreatetime,jdbcType=TIMESTAMP}, #{lcreateid,jdbcType=INTEGER}, #{lcreatename,jdbcType=VARCHAR}, 
+      #{lstatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xr.entity.Letterreport">
+    insert into letterreport
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lid != null">
+        lid,
+      </if>
+      <if test="letterid != null">
+        letterId,
+      </if>
+      <if test="ltime != null">
+        lTime,
+      </if>
+      <if test="lcomplainantname != null">
+        lComplainantName,
+      </if>
+      <if test="ldeptid != null">
+        lDeptId,
+      </if>
+      <if test="lpostid != null">
+        lPostId,
+      </if>
+      <if test="lpersonbereported != null">
+        lPersonBeReported,
+      </if>
+      <if test="lpbrdeptid != null">
+        lPbrDeptId,
+      </if>
+      <if test="lpbrpostid != null">
+        lPbrPostId,
+      </if>
+      <if test="lcontent != null">
+        lContent,
+      </if>
+      <if test="lsynopsis != null">
+        lSynopsis,
+      </if>
+      <if test="lsupervisioncomments != null">
+        lSupervisionComments,
+      </if>
+      <if test="lsupervisioncommentstime != null">
+        lSupervisionCommentsTime,
+      </if>
+      <if test="ldisciplinarycomments != null">
+        lDisciplinaryComments,
+      </if>
+      <if test="ldisciplinarytime != null">
+        lDisciplinaryTime,
+      </if>
+      <if test="lleaderscomments != null">
+        lLeadersComments,
+      </if>
+      <if test="lleaderstime != null">
+        lLeadersTime,
+      </if>
+      <if test="lresult != null">
+        lResult,
+      </if>
+      <if test="lresulttime != null">
+        lResultTime,
+      </if>
+      <if test="lsupervisionresutl != null">
+        lSupervisionResutl,
+      </if>
+      <if test="lsupervisionresulttime != null">
+        lSupervisionResultTime,
+      </if>
+      <if test="lcreatetime != null">
+        lCreateTime,
+      </if>
+      <if test="lcreateid != null">
+        lCreateId,
+      </if>
+      <if test="lcreatename != null">
+        lCreateName,
+      </if>
+      <if test="lstatus != null">
+        lStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lid != null">
+        #{lid,jdbcType=INTEGER},
+      </if>
+      <if test="letterid != null">
+        #{letterid,jdbcType=INTEGER},
+      </if>
+      <if test="ltime != null">
+        #{ltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lcomplainantname != null">
+        #{lcomplainantname,jdbcType=VARCHAR},
+      </if>
+      <if test="ldeptid != null">
+        #{ldeptid,jdbcType=INTEGER},
+      </if>
+      <if test="lpostid != null">
+        #{lpostid,jdbcType=INTEGER},
+      </if>
+      <if test="lpersonbereported != null">
+        #{lpersonbereported,jdbcType=VARCHAR},
+      </if>
+      <if test="lpbrdeptid != null">
+        #{lpbrdeptid,jdbcType=INTEGER},
+      </if>
+      <if test="lpbrpostid != null">
+        #{lpbrpostid,jdbcType=INTEGER},
+      </if>
+      <if test="lcontent != null">
+        #{lcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="lsynopsis != null">
+        #{lsynopsis,jdbcType=VARCHAR},
+      </if>
+      <if test="lsupervisioncomments != null">
+        #{lsupervisioncomments,jdbcType=VARCHAR},
+      </if>
+      <if test="lsupervisioncommentstime != null">
+        #{lsupervisioncommentstime,jdbcType=VARCHAR},
+      </if>
+      <if test="ldisciplinarycomments != null">
+        #{ldisciplinarycomments,jdbcType=VARCHAR},
+      </if>
+      <if test="ldisciplinarytime != null">
+        #{ldisciplinarytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lleaderscomments != null">
+        #{lleaderscomments,jdbcType=VARCHAR},
+      </if>
+      <if test="lleaderstime != null">
+        #{lleaderstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lresult != null">
+        #{lresult,jdbcType=VARCHAR},
+      </if>
+      <if test="lresulttime != null">
+        #{lresulttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lsupervisionresutl != null">
+        #{lsupervisionresutl,jdbcType=VARCHAR},
+      </if>
+      <if test="lsupervisionresulttime != null">
+        #{lsupervisionresulttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lcreatetime != null">
+        #{lcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lcreateid != null">
+        #{lcreateid,jdbcType=INTEGER},
+      </if>
+      <if test="lcreatename != null">
+        #{lcreatename,jdbcType=VARCHAR},
+      </if>
+      <if test="lstatus != null">
+        #{lstatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xr.entity.Letterreport">
+    update letterreport
+    <set>
+      <if test="letterid != null">
+        letterId = #{letterid,jdbcType=INTEGER},
+      </if>
+      <if test="ltime != null">
+        lTime = #{ltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lcomplainantname != null">
+        lComplainantName = #{lcomplainantname,jdbcType=VARCHAR},
+      </if>
+      <if test="ldeptid != null">
+        lDeptId = #{ldeptid,jdbcType=INTEGER},
+      </if>
+      <if test="lpostid != null">
+        lPostId = #{lpostid,jdbcType=INTEGER},
+      </if>
+      <if test="lpersonbereported != null">
+        lPersonBeReported = #{lpersonbereported,jdbcType=VARCHAR},
+      </if>
+      <if test="lpbrdeptid != null">
+        lPbrDeptId = #{lpbrdeptid,jdbcType=INTEGER},
+      </if>
+      <if test="lpbrpostid != null">
+        lPbrPostId = #{lpbrpostid,jdbcType=INTEGER},
+      </if>
+      <if test="lcontent != null">
+        lContent = #{lcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="lsynopsis != null">
+        lSynopsis = #{lsynopsis,jdbcType=VARCHAR},
+      </if>
+      <if test="lsupervisioncomments != null">
+        lSupervisionComments = #{lsupervisioncomments,jdbcType=VARCHAR},
+      </if>
+      <if test="lsupervisioncommentstime != null">
+        lSupervisionCommentsTime = #{lsupervisioncommentstime,jdbcType=VARCHAR},
+      </if>
+      <if test="ldisciplinarycomments != null">
+        lDisciplinaryComments = #{ldisciplinarycomments,jdbcType=VARCHAR},
+      </if>
+      <if test="ldisciplinarytime != null">
+        lDisciplinaryTime = #{ldisciplinarytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lleaderscomments != null">
+        lLeadersComments = #{lleaderscomments,jdbcType=VARCHAR},
+      </if>
+      <if test="lleaderstime != null">
+        lLeadersTime = #{lleaderstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lresult != null">
+        lResult = #{lresult,jdbcType=VARCHAR},
+      </if>
+      <if test="lresulttime != null">
+        lResultTime = #{lresulttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lsupervisionresutl != null">
+        lSupervisionResutl = #{lsupervisionresutl,jdbcType=VARCHAR},
+      </if>
+      <if test="lsupervisionresulttime != null">
+        lSupervisionResultTime = #{lsupervisionresulttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lcreatetime != null">
+        lCreateTime = #{lcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lcreateid != null">
+        lCreateId = #{lcreateid,jdbcType=INTEGER},
+      </if>
+      <if test="lcreatename != null">
+        lCreateName = #{lcreatename,jdbcType=VARCHAR},
+      </if>
+      <if test="lstatus != null">
+        lStatus = #{lstatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where lid = #{lid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xr.entity.Letterreport">
+    update letterreport
+    set letterId = #{letterid,jdbcType=INTEGER},
+      lTime = #{ltime,jdbcType=TIMESTAMP},
+      lComplainantName = #{lcomplainantname,jdbcType=VARCHAR},
+      lDeptId = #{ldeptid,jdbcType=INTEGER},
+      lPostId = #{lpostid,jdbcType=INTEGER},
+      lPersonBeReported = #{lpersonbereported,jdbcType=VARCHAR},
+      lPbrDeptId = #{lpbrdeptid,jdbcType=INTEGER},
+      lPbrPostId = #{lpbrpostid,jdbcType=INTEGER},
+      lContent = #{lcontent,jdbcType=VARCHAR},
+      lSynopsis = #{lsynopsis,jdbcType=VARCHAR},
+      lSupervisionComments = #{lsupervisioncomments,jdbcType=VARCHAR},
+      lSupervisionCommentsTime = #{lsupervisioncommentstime,jdbcType=VARCHAR},
+      lDisciplinaryComments = #{ldisciplinarycomments,jdbcType=VARCHAR},
+      lDisciplinaryTime = #{ldisciplinarytime,jdbcType=TIMESTAMP},
+      lLeadersComments = #{lleaderscomments,jdbcType=VARCHAR},
+      lLeadersTime = #{lleaderstime,jdbcType=TIMESTAMP},
+      lResult = #{lresult,jdbcType=VARCHAR},
+      lResultTime = #{lresulttime,jdbcType=TIMESTAMP},
+      lSupervisionResutl = #{lsupervisionresutl,jdbcType=VARCHAR},
+      lSupervisionResultTime = #{lsupervisionresulttime,jdbcType=TIMESTAMP},
+      lCreateTime = #{lcreatetime,jdbcType=TIMESTAMP},
+      lCreateId = #{lcreateid,jdbcType=INTEGER},
+      lCreateName = #{lcreatename,jdbcType=VARCHAR},
+      lStatus = #{lstatus,jdbcType=INTEGER}
+    where lid = #{lid,jdbcType=INTEGER}
+  </update>
+</mapper>

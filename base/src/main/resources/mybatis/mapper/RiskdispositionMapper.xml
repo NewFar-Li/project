@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xr.mapper.RiskdispositionMapper">
+  <resultMap id="BaseResultMap" type="com.xr.entity.Riskdisposition">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="dispositionTitile" jdbcType="VARCHAR" property="dispositiontitile" />
+    <result column="dispositionContent" jdbcType="VARCHAR" property="dispositioncontent" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="departmentID" jdbcType="INTEGER" property="departmentid" />
+    <result column="positionID" jdbcType="INTEGER" property="positionid" />
+    <result column="riskLevelID" jdbcType="INTEGER" property="risklevelid" />
+    <result column="disposeResult" jdbcType="VARCHAR" property="disposeresult" />
+    <result column="loginID" jdbcType="INTEGER" property="loginid" />
+    <result column="createName" jdbcType="VARCHAR" property="createname" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dispositionTitile, dispositionContent, createDate, departmentID, positionID, 
+    riskLevelID, disposeResult, loginID, createName, state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from riskdisposition
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from riskdisposition
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xr.entity.Riskdisposition">
+    insert into riskdisposition (id, dispositionTitile, dispositionContent, 
+      createDate, departmentID, positionID, 
+      riskLevelID, disposeResult, loginID, 
+      createName, state)
+    values (#{id,jdbcType=INTEGER}, #{dispositiontitile,jdbcType=VARCHAR}, #{dispositioncontent,jdbcType=VARCHAR}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{departmentid,jdbcType=INTEGER}, #{positionid,jdbcType=INTEGER}, 
+      #{risklevelid,jdbcType=INTEGER}, #{disposeresult,jdbcType=VARCHAR}, #{loginid,jdbcType=INTEGER}, 
+      #{createname,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xr.entity.Riskdisposition">
+    insert into riskdisposition
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dispositiontitile != null">
+        dispositionTitile,
+      </if>
+      <if test="dispositioncontent != null">
+        dispositionContent,
+      </if>
+      <if test="createdate != null">
+        createDate,
+      </if>
+      <if test="departmentid != null">
+        departmentID,
+      </if>
+      <if test="positionid != null">
+        positionID,
+      </if>
+      <if test="risklevelid != null">
+        riskLevelID,
+      </if>
+      <if test="disposeresult != null">
+        disposeResult,
+      </if>
+      <if test="loginid != null">
+        loginID,
+      </if>
+      <if test="createname != null">
+        createName,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dispositiontitile != null">
+        #{dispositiontitile,jdbcType=VARCHAR},
+      </if>
+      <if test="dispositioncontent != null">
+        #{dispositioncontent,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departmentid != null">
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="positionid != null">
+        #{positionid,jdbcType=INTEGER},
+      </if>
+      <if test="risklevelid != null">
+        #{risklevelid,jdbcType=INTEGER},
+      </if>
+      <if test="disposeresult != null">
+        #{disposeresult,jdbcType=VARCHAR},
+      </if>
+      <if test="loginid != null">
+        #{loginid,jdbcType=INTEGER},
+      </if>
+      <if test="createname != null">
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xr.entity.Riskdisposition">
+    update riskdisposition
+    <set>
+      <if test="dispositiontitile != null">
+        dispositionTitile = #{dispositiontitile,jdbcType=VARCHAR},
+      </if>
+      <if test="dispositioncontent != null">
+        dispositionContent = #{dispositioncontent,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        createDate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departmentid != null">
+        departmentID = #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="positionid != null">
+        positionID = #{positionid,jdbcType=INTEGER},
+      </if>
+      <if test="risklevelid != null">
+        riskLevelID = #{risklevelid,jdbcType=INTEGER},
+      </if>
+      <if test="disposeresult != null">
+        disposeResult = #{disposeresult,jdbcType=VARCHAR},
+      </if>
+      <if test="loginid != null">
+        loginID = #{loginid,jdbcType=INTEGER},
+      </if>
+      <if test="createname != null">
+        createName = #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xr.entity.Riskdisposition">
+    update riskdisposition
+    set dispositionTitile = #{dispositiontitile,jdbcType=VARCHAR},
+      dispositionContent = #{dispositioncontent,jdbcType=VARCHAR},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      departmentID = #{departmentid,jdbcType=INTEGER},
+      positionID = #{positionid,jdbcType=INTEGER},
+      riskLevelID = #{risklevelid,jdbcType=INTEGER},
+      disposeResult = #{disposeresult,jdbcType=VARCHAR},
+      loginID = #{loginid,jdbcType=INTEGER},
+      createName = #{createname,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

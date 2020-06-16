@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xr.mapper.DatacollectionMapper">
+  <resultMap id="BaseResultMap" type="com.xr.entity.Datacollection">
+    <id column="did" jdbcType="INTEGER" property="did" />
+    <result column="dTitle" jdbcType="VARCHAR" property="dtitle" />
+    <result column="dFileName" jdbcType="VARCHAR" property="dfilename" />
+    <result column="dFile" jdbcType="VARCHAR" property="dfile" />
+    <result column="dCreateTime" jdbcType="TIMESTAMP" property="dcreatetime" />
+    <result column="dCreateId" jdbcType="INTEGER" property="dcreateid" />
+    <result column="dCreateName" jdbcType="VARCHAR" property="dcreatename" />
+    <result column="dStatus" jdbcType="INTEGER" property="dstatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    did, dTitle, dFileName, dFile, dCreateTime, dCreateId, dCreateName, dStatus
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from datacollection
+    where did = #{did,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from datacollection
+    where did = #{did,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xr.entity.Datacollection">
+    insert into datacollection (did, dTitle, dFileName, 
+      dFile, dCreateTime, dCreateId, 
+      dCreateName, dStatus)
+    values (#{did,jdbcType=INTEGER}, #{dtitle,jdbcType=VARCHAR}, #{dfilename,jdbcType=VARCHAR}, 
+      #{dfile,jdbcType=VARCHAR}, #{dcreatetime,jdbcType=TIMESTAMP}, #{dcreateid,jdbcType=INTEGER}, 
+      #{dcreatename,jdbcType=VARCHAR}, #{dstatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xr.entity.Datacollection">
+    insert into datacollection
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="did != null">
+        did,
+      </if>
+      <if test="dtitle != null">
+        dTitle,
+      </if>
+      <if test="dfilename != null">
+        dFileName,
+      </if>
+      <if test="dfile != null">
+        dFile,
+      </if>
+      <if test="dcreatetime != null">
+        dCreateTime,
+      </if>
+      <if test="dcreateid != null">
+        dCreateId,
+      </if>
+      <if test="dcreatename != null">
+        dCreateName,
+      </if>
+      <if test="dstatus != null">
+        dStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="did != null">
+        #{did,jdbcType=INTEGER},
+      </if>
+      <if test="dtitle != null">
+        #{dtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="dfilename != null">
+        #{dfilename,jdbcType=VARCHAR},
+      </if>
+      <if test="dfile != null">
+        #{dfile,jdbcType=VARCHAR},
+      </if>
+      <if test="dcreatetime != null">
+        #{dcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dcreateid != null">
+        #{dcreateid,jdbcType=INTEGER},
+      </if>
+      <if test="dcreatename != null">
+        #{dcreatename,jdbcType=VARCHAR},
+      </if>
+      <if test="dstatus != null">
+        #{dstatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xr.entity.Datacollection">
+    update datacollection
+    <set>
+      <if test="dtitle != null">
+        dTitle = #{dtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="dfilename != null">
+        dFileName = #{dfilename,jdbcType=VARCHAR},
+      </if>
+      <if test="dfile != null">
+        dFile = #{dfile,jdbcType=VARCHAR},
+      </if>
+      <if test="dcreatetime != null">
+        dCreateTime = #{dcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dcreateid != null">
+        dCreateId = #{dcreateid,jdbcType=INTEGER},
+      </if>
+      <if test="dcreatename != null">
+        dCreateName = #{dcreatename,jdbcType=VARCHAR},
+      </if>
+      <if test="dstatus != null">
+        dStatus = #{dstatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where did = #{did,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xr.entity.Datacollection">
+    update datacollection
+    set dTitle = #{dtitle,jdbcType=VARCHAR},
+      dFileName = #{dfilename,jdbcType=VARCHAR},
+      dFile = #{dfile,jdbcType=VARCHAR},
+      dCreateTime = #{dcreatetime,jdbcType=TIMESTAMP},
+      dCreateId = #{dcreateid,jdbcType=INTEGER},
+      dCreateName = #{dcreatename,jdbcType=VARCHAR},
+      dStatus = #{dstatus,jdbcType=INTEGER}
+    where did = #{did,jdbcType=INTEGER}
+  </update>
+</mapper>

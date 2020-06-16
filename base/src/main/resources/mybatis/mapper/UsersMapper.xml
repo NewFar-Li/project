@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//MyBatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xr.mapper.UsersMapper">
+    <resultMap id="BaseResultMap" type="com.xr.entity.Users">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="salt" jdbcType="VARCHAR" property="salt" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+        <result column="status" jdbcType="TINYINT" property="status" />
+        <result column="dept_id" jdbcType="BIGINT" property="deptId" />
+        <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+        <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+        <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+        <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+        <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    </resultMap>
+
+    <resultMap id="userAndRoleAndMenuResultMap" type="Users">
+        <id column="uid"  property="id" />
+        <result column="name" property="username" />
+        <result column="password" property="password" />
+        <result column="salt" property="salt" />
+        <result column="email" property="email" />
+        <result column="mobile" property="mobile" />
+        <result column="status" property="status" />
+        <result column="dept_id"  property="deptId" />
+        <result column="udelFlag"  property="delFlag" />
+        <result column="introduction"  property="introduction" />
+        <result column="avatar"  property="avatar" />
+        <!--  用户与角色的一对多关系-->
+        <collection property="roles" ofType="Role">
+            <id column="rid" property="id"></id>
+            <result column="rname" property="roleName" />
+            <result column="remark" property="remark" />
+            <!--    角色与权限的一对多-->
+            <collection property="menus" ofType="Menu">
+                <id column="mid" property="id" />
+                <result column="mname" property="name" />
+                <result column="parent_id" property="parentId" />
+                <result column="url" property="url" />
+                <result column="perms" property="perms" />
+                <result column="type"  property="type" />
+                <result column="icon"  property="icon" />
+                <result column="order_num" property="orderNum" />
+            </collection>
+        </collection>
+    </resultMap>
+    <!--  根据用户名查询角色和觉角色对应的权限-->
+    <select id="findUserByUserName" parameterType="string" resultMap="userAndRoleAndMenuResultMap">
+       select u.id uid,introduction,avatar,u.name,password,salt,email,mobile,status,dept_id,u.del_flag udelFlag,r.id rid,r.roleName rname,r.remark,m.id mid,m.name mname,m.parent_id,m.url,m.perms,m.type,m.icon,m.order_num
+       from sys_user u INNER JOIN sys_user_role ur ON u.id = ur.user_id INNER JOIN sys_role r ON ur.role_id = r.id INNER JOIN sys_role_menu rm ON r.id = rm.role_id INNER JOIN sys_menu m ON m.id = rm.menu_id
+       where u.name=#{username} and u.del_flag=0 and r.del_flag=0 and m.del_flag=0
+    </select>
+    <sql id="Base_Column_List">
+    id, name, password, salt, email, mobile, status, dept_id, create_by, create_time,
+    last_update_by, last_update_time, del_flag, introduction, avatar
+  </sql>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <select id="selectByExample" parameterType="com.xr.entity.UsersExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from sys_user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+</mapper>

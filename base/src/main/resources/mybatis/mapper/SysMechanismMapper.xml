@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xr.mapper.SysMechanismMapper">
+  <resultMap id="BaseResultMap" type="com.xr.entity.SysMechanism">
+    <id column="mid" jdbcType="INTEGER" property="mid" />
+    <result column="mechanism_name" jdbcType="VARCHAR" property="mechanismName" />
+    <result column="sid" jdbcType="INTEGER" property="sid" />
+    <result column="parent" jdbcType="INTEGER" property="parent" />
+    <result column="branch" jdbcType="INTEGER" property="branch" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_id" jdbcType="INTEGER" property="createId" />
+    <result column="staus" jdbcType="VARCHAR" property="staus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mid, mechanism_name, sid, parent, branch, create_time, create_id, staus
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_mechanism
+    where mid = #{mid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_mechanism
+    where mid = #{mid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xr.entity.SysMechanism">
+    insert into sys_mechanism (mid, mechanism_name, sid, 
+      parent, branch, create_time, 
+      create_id, staus)
+    values (#{mid,jdbcType=INTEGER}, #{mechanismName,jdbcType=VARCHAR}, #{sid,jdbcType=INTEGER}, 
+      #{parent,jdbcType=INTEGER}, #{branch,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createId,jdbcType=INTEGER}, #{staus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xr.entity.SysMechanism">
+    insert into sys_mechanism
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mid != null">
+        mid,
+      </if>
+      <if test="mechanismName != null">
+        mechanism_name,
+      </if>
+      <if test="sid != null">
+        sid,
+      </if>
+      <if test="parent != null">
+        parent,
+      </if>
+      <if test="branch != null">
+        branch,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="staus != null">
+        staus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mid != null">
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="mechanismName != null">
+        #{mechanismName,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="parent != null">
+        #{parent,jdbcType=INTEGER},
+      </if>
+      <if test="branch != null">
+        #{branch,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="staus != null">
+        #{staus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xr.entity.SysMechanism">
+    update sys_mechanism
+    <set>
+      <if test="mechanismName != null">
+        mechanism_name = #{mechanismName,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        sid = #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="parent != null">
+        parent = #{parent,jdbcType=INTEGER},
+      </if>
+      <if test="branch != null">
+        branch = #{branch,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="staus != null">
+        staus = #{staus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xr.entity.SysMechanism">
+    update sys_mechanism
+    set mechanism_name = #{mechanismName,jdbcType=VARCHAR},
+      sid = #{sid,jdbcType=INTEGER},
+      parent = #{parent,jdbcType=INTEGER},
+      branch = #{branch,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=INTEGER},
+      staus = #{staus,jdbcType=VARCHAR}
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+</mapper>
